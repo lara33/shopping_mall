@@ -32,6 +32,8 @@ RSpec.describe Cart, type: :model do
       expect(cart.items.second.product_id).to be p2.id
       expect(cart.items.first.product).to be_a Product
     end
+
+  
   end
 end
   
