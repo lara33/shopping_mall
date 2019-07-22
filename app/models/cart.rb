@@ -1,4 +1,5 @@
 class Cart
+  SessionKey = :cart9999
   attr_reader :items
 
   def initialize(items = [])
@@ -35,9 +36,9 @@ class Cart
     if hash.nil?
       new []
     else
-      new hash["items"].map {|item_hash|
-      CartItem.new(item_hash["product_id"], item_hash["quantity"])
-    }
+      new hash["items"].map { |item_hash|
+        CartItem.new(item_hash["product_id"], item_hash["quantity"])
+      }
     end
   end
 end
