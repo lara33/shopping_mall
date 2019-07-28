@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :find_product, only: [:edit, :update, :destroy]
+  before_action :find_product, only: [:show, :edit, :update, :destroy, :checkout]
 
   def index
     @products = Product.all
@@ -11,11 +11,8 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-    if @product.save
-      redirect_to products_path, notice: "新增商品完成"
-    else
-      render :new
-    end
+    @product.save
+    render :new
   end
 
   def edit
@@ -32,6 +29,29 @@ class ProductsController < ApplicationController
   def destroy
     @product.destroy
     redirect_to products_path, notice: "商品已刪除"
+  end
+
+  def show
+    @client_token = Braintree::ClientToken.generate
+  end
+
+  def checkout
+    if @product
+      nonce = params[:payment_method_nonce]
+
+      result = Braintree::Transaction.sale(
+        amount: @product.price,
+        payment_method_nonce: nonce,
+      )
+
+      if result
+        redirect_to products_path, notice: "刷卡成功"
+      else
+        # 錯誤處理
+      end
+    else
+      # 錯誤處理
+    end
   end
 
   private
