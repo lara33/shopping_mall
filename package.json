@@ -1,5 +1,7 @@
 {
   "name": "sopping_mall",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "pg": "^7.12.0"
+  }
 }

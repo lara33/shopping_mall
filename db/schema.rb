@@ -12,14 +12,17 @@
 
 ActiveRecord::Schema.define(version: 2019_07_26_062954) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "order_items", force: :cascade do |t|
-    t.integer "order_id"
-    t.integer "product_id"
+    t.bigint "order_id"
+    t.bigint "product_id"
     t.integer "quantity"
     t.decimal "strike_price"
     t.datetime "created_at", null: false
@@ -46,4 +49,6 @@ ActiveRecord::Schema.define(version: 2019_07_26_062954) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "order_items", "orders"
+  add_foreign_key "order_items", "products"
 end
