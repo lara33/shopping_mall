@@ -15,5 +15,3 @@ test:
 production:
   <<: *default
   database: shopping_mall_production
-  username: shopping_mall
-  password: <%= ENV['shopping_mall_DATABASE_PASSWORD'] %>
