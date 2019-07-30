@@ -1,24 +1,42 @@
-# README
+## Shopping_mall
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- 新增 / 讀取 / 編輯 / 刪除 商品
+- 檢視 / 清空購物車
+- AASM (狀態機)
+- 結帳（PayPal）
 
-Things you may want to cover:
+## Requirements
 
-* Ruby version
+- Ruby version 2.6.0
+- Rails version 5.2.3
+- PostgreSQL 11.3
 
-* System dependencies
+## Usage
 
-* Configuration
+### Install Dependency
 
-* Database creation
+```s
+$ bundle install
+```
 
-* Database initialization
+### Prepare Database
 
-* How to run the test suite
+If you didn't have database.
 
-* Services (job queues, cache servers, search engines, etc.)
+```s
+$ rails db:create
+```
 
-* Deployment instructions
+And run migration to create tables.
 
-* ...
+```s
+$ rails db:migrate
+```
+
+### Start server
+
+Start Rails server.
+
+```s
+$ rails s
+```
